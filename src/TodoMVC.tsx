@@ -1,18 +1,21 @@
-import { useRecoilValue } from 'recoil'
+import { atom, useAtomValue } from 'jotai'
 
 import Copyright from './Copyright'
-import { AppState, recoilState } from './dataStructure'
 import NewTodoTextInput from './NewTodoInput'
 import TodoList from './TodoList'
 import UnderBar from './UnderBar'
 
+const todoListAtom = atom<string[]>([])
+const lengthAtom = atom((get) => get(todoListAtom).length)
+
 const TodoMVC = () => {
-  const appState = useRecoilValue<AppState>(recoilState)
+  const length = useAtomValue(lengthAtom)
+
   return (
     <>
       <section className='todoapp'>
         <NewTodoTextInput />
-        {appState.todoList.length ? (
+        {length ? (
           <>
             <TodoList />
             <UnderBar />

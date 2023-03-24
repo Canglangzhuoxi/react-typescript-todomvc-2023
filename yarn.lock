@@ -2997,6 +2997,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jotai@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "jotai@npm:2.0.3"
+  peerDependencies:
+    react: ">=17.0.0"
+  peerDependenciesMeta:
+    react:
+      optional: true
+  checksum: 3ad1d6a9b7e40a8dd8cdc423441164c25852a328c98806ed0e2a283a4e07af661f4a88b50528367aeae582932171bc8979e45cbc9023af30b9f4a348faeed567
+  languageName: node
+  linkType: hard
+
 "js-sdsl@npm:^4.1.4":
   version: 4.4.0
   resolution: "js-sdsl@npm:4.4.0"
@@ -4011,6 +4023,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-simple-import-sort: ^10.0.0
     husky: ^8.0.3
+    jotai: ^2.0.3
     lint-staged: ^13.2.0
     nanoid: ^4.0.1
     pinst: ^3.0.0

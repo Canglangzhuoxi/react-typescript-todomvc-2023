@@ -1,7 +1,6 @@
 import './App.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { RecoilRoot } from 'recoil'
 
 import ErrorBoundary from './ErrorBoundary'
 import { NotFound } from './NotFound'
@@ -31,9 +30,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ErrorBoundary>
-      <RecoilRoot>
-        <RouterProvider router={router} />
-      </RecoilRoot>
+      <RouterProvider router={router} />
     </ErrorBoundary>
   )
 }

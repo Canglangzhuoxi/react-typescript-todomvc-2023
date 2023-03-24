@@ -46,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react-hooks", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:4.6.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:10.0.0"],\
             ["husky", "npm:8.0.3"],\
+            ["jotai", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:2.0.3"],\
             ["lint-staged", "npm:13.2.0"],\
             ["nanoid", "npm:4.0.1"],\
             ["pinst", "npm:3.0.0"],\
@@ -3686,6 +3687,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["jotai", [\
+        ["npm:2.0.3", {\
+          "packageLocation": "./.yarn/cache/jotai-npm-2.0.3-56839d68a0-3ad1d6a9b7.zip/node_modules/jotai/",\
+          "packageDependencies": [\
+            ["jotai", "npm:2.0.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:2.0.3", {\
+          "packageLocation": "./.yarn/__virtual__/jotai-virtual-31ef517b53/0/cache/jotai-npm-2.0.3-56839d68a0-3ad1d6a9b7.zip/node_modules/jotai/",\
+          "packageDependencies": [\
+            ["jotai", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:2.0.3"],\
+            ["@types/react", "npm:18.0.28"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["js-sdsl", [\
         ["npm:4.4.0", {\
           "packageLocation": "./.yarn/cache/js-sdsl-npm-4.4.0-e8ec19da4a-7bb08a2d74.zip/node_modules/js-sdsl/",\
@@ -4916,6 +4939,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react-hooks", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:4.6.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:10.0.0"],\
             ["husky", "npm:8.0.3"],\
+            ["jotai", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:2.0.3"],\
             ["lint-staged", "npm:13.2.0"],\
             ["nanoid", "npm:4.0.1"],\
             ["pinst", "npm:3.0.0"],\

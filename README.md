@@ -12,14 +12,11 @@ yarn dev
 
 ## Stack(Using & Target)
 
-- [TODO-CSS-Template](https://github.com/Klerith/TODO-CSS-Template) (Borrowing HTML & CSS Thanks! 👍 )
+- [TODO-CSS-Template](https://github.com/Klerith/TODO-CSS-Template)
 - [Vite](https://vitejs.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [React Router](https://reactrouter.com/)
-- [Recoil](https://recoiljs.org/): A state management library for React
-- [Cypress](https://www.cypress.io/): E2E Testing
-- [react-testing-library](https://github.com/testing-library/react-testing-library)
-- [ESLint](https://eslint.org/)
-- [Netlify](https://www.netlify.com/): Deploy & Hosting
-- [Github Actions](https://github.com/features/actions): Automation run tests, lint, typecheck, build
-- [Depfu](https://depfu.com/github/ryota-murakami/react-typescript-todomvc-2022?project_id=9618): Keep latest npm packages automaticaly
+- [jotai](https://jotai.org/)
+- [tailwindcss](https://tailwindcss.com/)
+- [@tanstack/react-query](https://tanstack.com/query/latest)
+- [UI design patterns](https://martinfowler.com/articles/modularizing-react-apps.html)
