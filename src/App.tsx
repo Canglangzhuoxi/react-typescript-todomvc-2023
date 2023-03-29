@@ -1,26 +1,24 @@
 import './App.css'
 
+import { ErrorBoundary } from 'react-error-boundary'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import ErrorBoundary from './ErrorBoundary'
-import { NotFound } from './NotFound'
-import TodoMVC from './TodoMVC'
+import { ErrorBoundaryFallbackComponent } from './components/ErrorBoundaryFallbackComponent'
+import { NotFound } from './components/NotFound'
+import TodoMVC from './components/TodoMVC'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <TodoMVC />,
-    // loader: ,
   },
   {
     path: '/active',
     element: <TodoMVC />,
-    // loader: ,
   },
   {
     path: '/completed',
     element: <TodoMVC />,
-    // loader: ,
   },
   {
     path: '*',
@@ -29,7 +27,7 @@ const router = createBrowserRouter([
 ])
 function App() {
   return (
-    <ErrorBoundary>
+    <ErrorBoundary FallbackComponent={ErrorBoundaryFallbackComponent}>
       <RouterProvider router={router} />
     </ErrorBoundary>
   )
