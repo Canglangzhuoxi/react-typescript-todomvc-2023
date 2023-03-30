@@ -76,11 +76,12 @@ const Item: React.FC<Props> = ({ todo, todoListDispatch }) => {
         </button>
         <button
           className='destory'
-          onClick={() => () =>
+          onClick={() =>
             todoListDispatch({
               type: 'REMOVE',
               id: todo.id,
-            })}
+            })
+          }
         ></button>
       </div>
 
