@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 
 import { TodoListAction, TodoType } from '../../../types'
 
@@ -58,8 +58,8 @@ const Item: React.FC<Props> = ({ todo, todoListDispatch }) => {
   }
 
   return (
-    <li className={SwitchStyle(todo, state.onEdit)} data-testid='todo-item'>
-      <div className='view' data-testid='view'>
+    <li className={SwitchStyle(todo, state.onEdit)}>
+      <div className='view'>
         <input
           className='toggle'
           type='checkbox'
@@ -75,7 +75,7 @@ const Item: React.FC<Props> = ({ todo, todoListDispatch }) => {
           {todo.text}
         </button>
         <button
-          className='destory'
+          className='destroy'
           onClick={() =>
             todoListDispatch({
               type: 'REMOVE',
