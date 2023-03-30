@@ -1,25 +1,7 @@
-import React, { useCallback, useState } from 'react'
+import { useTodoTextInput } from '../hooks/useTodoTextInput'
 
-import { TodoListAction } from '../types'
-
-interface Props {
-  todoListDispatch: React.Dispatch<TodoListAction>
-}
-const TodoTextInput: React.FC<Props> = ({ todoListDispatch }) => {
-  const [text, setText] = useState('')
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value)
-  }
-  const onAddTodo = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key == 'Enter' && e.currentTarget.value.trim().length > 0) {
-      todoListDispatch({
-        type: 'ADD',
-        text: e.currentTarget.value,
-      })
-      setText('')
-    }
-  }, [])
+const TodoTextInput = () => {
+  const { text, onChange, onKeyDown } = useTodoTextInput()
 
   return (
     <header>
@@ -29,8 +11,8 @@ const TodoTextInput: React.FC<Props> = ({ todoListDispatch }) => {
         className='new-todo'
         placeholder='What needs to be done?'
         value={text}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
-        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => onAddTodo(e)}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
       />
     </header>
   )

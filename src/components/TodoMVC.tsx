@@ -1,66 +1,30 @@
-import { nanoid } from 'nanoid'
-import { useImmerReducer } from 'use-immer'
+import { useLocation } from 'react-router-dom'
 
-import { LocalStorageKeyType, TodoListAction, TodoListType } from '../types'
+import { useTodoList } from '../hooks/useTodoList'
 import Copyright from './Copyright'
 import TodoList from './TodoList'
 import TodoTextInput from './TodoTextInput'
 import UnderBar from './UnderBar'
 
-const todoListReducer = (draft: TodoListType, action: TodoListAction) => {
-  switch (action.type) {
-    case 'ADD':
-      if (action.text && action.text.trim().length > 0) {
-        draft.push({
-          id: nanoid(),
-          text: action.text,
-          completed: false,
-        })
-      }
-      break
-    case 'REMOVE':
-      return draft.filter((todo) => todo.id !== action.id)
-    case 'EDIT': {
-      const index = draft.findIndex((todo) => todo.id === action.id)
-      draft[index].text = action.text
-      break
-    }
-    case 'TOGGLE':
-      const index = draft.findIndex((todo) => todo.id === action.id)
-      draft[index].completed = !draft[index].completed
-      break
-    case 'TOGGLE_ALL':
-      draft.forEach((todo) => (todo.completed = action.completed))
-      break
-    case 'CLEAR_COMPLETED':
-      return draft.filter((t) => !t.completed)
-    default:
-      break
-  }
-}
-
-const initialTodoList = () => {
-  const stringifiedJSON: string | null = window.localStorage.getItem(LocalStorageKeyType.APP_STATE)
-  if (typeof stringifiedJSON === 'string') {
-    const Loaded: TodoListType = JSON.parse(stringifiedJSON)
-    return Loaded
-  }
-
-  const BlankAppState: TodoListType = []
-  return BlankAppState
-}
-
 const TodoMVC = () => {
-  const [todoList, todoListDispatch] = useImmerReducer(todoListReducer, initialTodoList())
+  const { todoList, onToggleAll, onClearCompleted } = useTodoList()
+  const { pathname } = useLocation()
 
   return (
     <>
       <section className='todo-app'>
-        <TodoTextInput todoListDispatch={todoListDispatch} />
-        {todoList.length > 0 ? (
+        <TodoTextInput />
+        {todoList.isNotEmpty ? (
           <>
-            <TodoList todoListDispatch={todoListDispatch} todoList={todoList} />
-            <UnderBar todoList={todoList} todoListDispatch={todoListDispatch} />
+            <TodoList
+              matchedRouteTodoList={todoList.getMatchedRouteTodoList(pathname)}
+              onToggleAll={onToggleAll}
+            />
+            <UnderBar
+              backlogLength={todoList.backlogLength}
+              completedIsNotEmpty={todoList.completedIsNotEmpty}
+              onClearCompleted={onClearCompleted}
+            />
           </>
         ) : null}
       </section>
