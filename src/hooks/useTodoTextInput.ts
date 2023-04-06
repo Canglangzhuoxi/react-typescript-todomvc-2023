@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTodoList } from './useTodoList'
 
 export const useTodoTextInput = () => {
-  const { onAdd } = useTodoList()
+  const { addTodo } = useTodoList()
 
   const [text, setText] = useState('')
 
@@ -12,7 +12,7 @@ export const useTodoTextInput = () => {
   }
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key == 'Enter' && e.currentTarget.value.trim().length > 0) {
-      onAdd(e)
+      addTodo(e.currentTarget.value)
       setText('')
     }
   }

@@ -1,43 +1,37 @@
-import { TodoListType, TodoType } from '../types'
+import { TodoType } from '../types'
 
-export class TodoListModel {
-  private readonly _todoList: TodoListType
-  constructor(todoList: TodoListType) {
-    this._todoList = todoList
+interface TodoListType {
+  todos: TodoType[]
+  isNotEmpty: boolean
+  completedLength: number
+  backlogLength: number
+  completedIsNotEmpty: boolean
+}
+
+export class TodoListModel implements TodoListType {
+  private _todos: TodoType[]
+
+  constructor(todos: TodoType[]) {
+    this._todos = todos
   }
 
-  get todoList() {
-    return this._todoList
+  get todos() {
+    return this._todos
   }
 
   get isNotEmpty() {
-    return this._todoList.length > 0
+    return this.todos.length > 0
   }
 
   get completedLength() {
-    return this._todoList.filter((t) => t.completed === true).length
+    return this.todos.filter((t) => t.completed === true).length
   }
 
   get backlogLength() {
-    return this._todoList.filter((t) => t.completed === false).length
+    return this.todos.filter((t) => t.completed === false).length
   }
 
   get completedIsNotEmpty() {
     return this.completedLength > 0
-  }
-
-  getMatchedRouteTodoList(path: string) {
-    return this._todoList.filter((t: TodoType) => {
-      switch (path) {
-        case '/':
-          return true
-        case '/active':
-          return t.completed === false
-        case '/completed':
-          return t.completed === true
-        default:
-          return true
-      }
-    })
   }
 }

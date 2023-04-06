@@ -1,17 +1,22 @@
 import React from 'react'
 
-import { TodoListType, TodoType } from '../../types'
+import { TodoType } from '../../types'
 import Item from './Todo'
 
 interface TodoListProps {
-  matchedRouteTodoList: TodoListType
-  onToggleAll: (e: React.ChangeEvent<HTMLInputElement>) => void
+  matchedRouteTodoList: TodoType[]
+  toggleAllTodos: (completed: boolean) => void
 }
 
-const TodoList: React.FC<TodoListProps> = ({ matchedRouteTodoList, onToggleAll }) => {
+const TodoList: React.FC<TodoListProps> = ({ matchedRouteTodoList, toggleAllTodos }) => {
   return (
     <section className='main'>
-      <input id='toggle-all' className='toggle-all' type='checkbox' onChange={onToggleAll} />
+      <input
+        id='toggle-all'
+        className='toggle-all'
+        type='checkbox'
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => toggleAllTodos(e.target.checked)}
+      />
       <label htmlFor='toggle-all'>Mark all as complete</label>
 
       <ul className='todo-list'>

@@ -4,8 +4,6 @@ export interface TodoType {
   completed: boolean
 }
 
-export type TodoListType = TodoType[]
-
 export enum LocalStorageKeyType {
   APP_STATE = 'APP_STATE',
 }

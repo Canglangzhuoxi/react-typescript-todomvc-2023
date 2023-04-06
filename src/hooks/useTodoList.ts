@@ -1,108 +1,119 @@
-import { cloneDeep } from 'lodash-es'
 import { nanoid } from 'nanoid'
-import { useCallback, useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { TodoListModel } from '../models/TodoListModal'
-import { LocalStorageKeyType, TodoListAction, TodoListType, TodoType } from '../types'
+import { LocalStorageKeyType, TodoListAction, TodoType } from '../types'
+import { getLocalStorage, removeLocalStorage, setLocalStorage } from '../utils'
 
 const todoListReducer = (prev: TodoListModel, action: TodoListAction) => {
-  let newTodoList = cloneDeep(prev.todoList)
-
   switch (action.type) {
     case 'ADD': {
-      newTodoList.push({
-        id: nanoid(),
-        text: action.text,
-        completed: false,
-      })
-      break
+      const newTodos = [
+        ...prev.todos,
+        {
+          id: nanoid(),
+          text: action.text,
+          completed: false,
+        },
+      ]
+      return new TodoListModel(newTodos)
     }
-    case 'REMOVE':
-      newTodoList = newTodoList.filter((todo) => todo.id !== action.id)
-      break
+    case 'REMOVE': {
+      const newTodos = prev.todos.filter((todo) => todo.id !== action.id)
+      return new TodoListModel(newTodos)
+    }
     case 'EDIT': {
-      const index = newTodoList.findIndex((todo) => todo.id === action.id)
-      newTodoList[index].text = action.text
-      break
+      const newTodos = prev.todos.map((todo) => {
+        if (todo.id === action.id) {
+          return { ...todo, text: action.text }
+        }
+        return todo
+      })
+      return new TodoListModel(newTodos)
     }
     case 'TOGGLE': {
-      const index = newTodoList.findIndex((todo) => todo.id === action.id)
-      newTodoList[index].completed = !prev.todoList[index].completed
-      break
+      const newTodos = prev.todos.map((todo) => {
+        if (todo.id === action.id) {
+          return { ...todo, completed: !todo.completed }
+        }
+        return todo
+      })
+      return new TodoListModel(newTodos)
     }
     case 'TOGGLE_ALL': {
-      newTodoList.forEach((todo) => (todo.completed = action.completed))
-      break
+      const newTodos = prev.todos.map((todo) => ({ ...todo, completed: action.completed }))
+      return new TodoListModel(newTodos)
     }
     case 'CLEAR_COMPLETED': {
-      newTodoList = newTodoList.filter((t) => !t.completed)
-      break
+      const newTodos = prev.todos.filter((t) => !t.completed)
+      return new TodoListModel(newTodos)
     }
   }
-
-  return new TodoListModel(newTodoList)
 }
 
-const convertTodoList = (todoList: TodoListType) => new TodoListModel(todoList)
-
 const initialTodoList = () => {
-  const stringifiedJSON: string | null = window.localStorage.getItem(LocalStorageKeyType.APP_STATE)
+  const stringifiedJSON: string | null = getLocalStorage(LocalStorageKeyType.APP_STATE)
   if (typeof stringifiedJSON === 'string') {
-    const Loaded: TodoListType = JSON.parse(stringifiedJSON)
-    return convertTodoList(Loaded)
+    try {
+      const todos: TodoType[] = JSON.parse(stringifiedJSON)
+      return new TodoListModel(todos)
+    } catch {
+      console.error('Could not parse localStorage data')
+    }
   }
-
-  const BlankAppState: TodoListType = []
-  return convertTodoList(BlankAppState)
+  return new TodoListModel([])
 }
 
 export const useTodoList = () => {
-  const [todoList, todoListDispatch] = useReducer(todoListReducer, initialTodoList())
+  const [todoList, dispatch] = useReducer(todoListReducer, initialTodoList())
+  const { pathname } = useLocation()
 
-  const onAdd = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    todoListDispatch({
-      type: 'ADD',
-      text: e.currentTarget.value,
+  const getMatchedRouteTodoList = (path: string) => {
+    return todoList.todos.filter((t: TodoType) => {
+      switch (path) {
+        case '/':
+          return true
+        case '/active':
+          return t.completed === false
+        case '/completed':
+          return t.completed === true
+        default:
+          return true
+      }
     })
-  }, [])
-  const onRemove = useCallback((id: TodoType['id']) => {
-    todoListDispatch({
-      type: 'REMOVE',
-      id: id,
-    })
-  }, [])
-  const onEdit = useCallback((id: TodoType['id'], text: TodoType['text']) => {
-    todoListDispatch({
-      type: 'EDIT',
-      id: id,
-      text: text,
-    })
-  }, [])
-  const onToggle = useCallback((id: TodoType['id']) => {
-    todoListDispatch({
-      type: 'TOGGLE',
-      id: id,
-    })
-  }, [])
-  const onToggleAll = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    todoListDispatch({
-      type: 'TOGGLE_ALL',
-      completed: e.target.checked,
-    })
-  }, [])
-  const onClearCompleted = useCallback(() => {
-    todoListDispatch({
-      type: 'CLEAR_COMPLETED',
-    })
-  }, [])
+  }
+
+  const storeTodoList = () => {
+    if (todoList.isNotEmpty) {
+      setLocalStorage(LocalStorageKeyType.APP_STATE, JSON.stringify(todoList.todos))
+    } else {
+      removeLocalStorage(LocalStorageKeyType.APP_STATE)
+    }
+  }
+
+  const matchedRouteTodoList = getMatchedRouteTodoList(pathname)
+  const addTodo = (text: string) => dispatch({ type: 'ADD', text })
+  const removeTodo = (id: string) => dispatch({ type: 'REMOVE', id })
+  const editTodo = (id: string, text: string) => dispatch({ type: 'EDIT', id, text })
+  const toggleTodo = (id: string) => dispatch({ type: 'TOGGLE', id })
+  const toggleAllTodos = (completed: boolean) => dispatch({ type: 'TOGGLE_ALL', completed })
+  const clearCompletedTodos = () => dispatch({ type: 'CLEAR_COMPLETED' })
+
+  useEffect(() => {
+    console.log(matchedRouteTodoList)
+
+    storeTodoList()
+  }, [todoList])
 
   return {
     todoList,
-    onAdd,
-    onRemove,
-    onEdit,
-    onToggle,
-    onToggleAll,
-    onClearCompleted,
+    matchedRouteTodoList,
+    addTodo,
+    removeTodo,
+    editTodo,
+    toggleTodo,
+    toggleAllTodos,
+    clearCompletedTodos,
   }
 }

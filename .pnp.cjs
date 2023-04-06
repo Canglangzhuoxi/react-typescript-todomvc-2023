@@ -48,7 +48,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react-hooks", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:4.6.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:10.0.0"],\
             ["husky", "npm:8.0.3"],\
-            ["immer", "npm:9.0.21"],\
             ["jotai", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:2.0.3"],\
             ["lint-staged", "npm:13.2.0"],\
             ["lodash-es", "npm:4.17.21"],\
@@ -62,7 +61,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-router-dom", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:6.9.0"],\
             ["tailwindcss", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:3.2.7"],\
             ["typescript", "patch:typescript@npm%3A5.0.2#~builtin<compat/typescript>::version=5.0.2&hash=85af82"],\
-            ["use-immer", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:0.8.1"],\
             ["vite", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:4.2.1"]\
           ],\
           "linkType": "SOFT"\
@@ -3320,15 +3318,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["immer", [\
-        ["npm:9.0.21", {\
-          "packageLocation": "./.yarn/cache/immer-npm-9.0.21-03c48c58ea-70e3c27416.zip/node_modules/immer/",\
-          "packageDependencies": [\
-            ["immer", "npm:9.0.21"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["import-fresh", [\
         ["npm:3.3.0", {\
           "packageLocation": "./.yarn/cache/import-fresh-npm-3.3.0-3e34265ca9-2cacfad06e.zip/node_modules/import-fresh/",\
@@ -5014,7 +5003,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react-hooks", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:4.6.0"],\
             ["eslint-plugin-simple-import-sort", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:10.0.0"],\
             ["husky", "npm:8.0.3"],\
-            ["immer", "npm:9.0.21"],\
             ["jotai", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:2.0.3"],\
             ["lint-staged", "npm:13.2.0"],\
             ["lodash-es", "npm:4.17.21"],\
@@ -5028,7 +5016,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-router-dom", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:6.9.0"],\
             ["tailwindcss", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:3.2.7"],\
             ["typescript", "patch:typescript@npm%3A5.0.2#~builtin<compat/typescript>::version=5.0.2&hash=85af82"],\
-            ["use-immer", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:0.8.1"],\
             ["vite", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:4.2.1"]\
           ],\
           "linkType": "SOFT"\
@@ -5879,32 +5866,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["uri-js", "npm:4.4.1"],\
             ["punycode", "npm:2.3.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["use-immer", [\
-        ["npm:0.8.1", {\
-          "packageLocation": "./.yarn/cache/use-immer-npm-0.8.1-2cf589888f-9ffc1a201a.zip/node_modules/use-immer/",\
-          "packageDependencies": [\
-            ["use-immer", "npm:0.8.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:0.8.1", {\
-          "packageLocation": "./.yarn/__virtual__/use-immer-virtual-435ac217d9/0/cache/use-immer-npm-0.8.1-2cf589888f-9ffc1a201a.zip/node_modules/use-immer/",\
-          "packageDependencies": [\
-            ["use-immer", "virtual:2817b0ed232abbab5fcc019aefe1ae0382b9c3e9bbf8c4e765ad481ad38deb32511242eb567d4e3c19e759af4873e6b92fbc85c921c0f81913d4557bb54fdd4f#npm:0.8.1"],\
-            ["@types/immer", null],\
-            ["@types/react", "npm:18.0.28"],\
-            ["immer", "npm:9.0.21"],\
-            ["react", "npm:18.2.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/immer",\
-            "@types/react",\
-            "immer",\
-            "react"\
           ],\
           "linkType": "HARD"\
         }]\

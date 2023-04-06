@@ -3,13 +3,13 @@ import FilterLink from './FilterLink'
 interface UnderBarProps {
   backlogLength: number
   completedIsNotEmpty: boolean
-  onClearCompleted: () => void
+  clearCompletedTodos: () => void
 }
 
 const UnderBar: React.FC<UnderBarProps> = ({
   backlogLength,
   completedIsNotEmpty,
-  onClearCompleted,
+  clearCompletedTodos,
 }) => {
   return (
     <footer className='footer'>
@@ -20,7 +20,7 @@ const UnderBar: React.FC<UnderBarProps> = ({
       <FilterLink />
 
       {completedIsNotEmpty && (
-        <button onClick={onClearCompleted} className='clear-completed'>
+        <button onClick={clearCompletedTodos} className='clear-completed'>
           Clear completed
         </button>
       )}

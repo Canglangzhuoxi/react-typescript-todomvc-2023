@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 
 import { useTodoList } from '../hooks/useTodoList'
 import Copyright from './Copyright'
@@ -7,23 +7,23 @@ import TodoTextInput from './TodoTextInput'
 import UnderBar from './UnderBar'
 
 const TodoMVC = () => {
-  const { todoList, onToggleAll, onClearCompleted } = useTodoList()
-  const { pathname } = useLocation()
+  const { todoList, toggleAllTodos, clearCompletedTodos, matchedRouteTodoList } = useTodoList()
+
+  useEffect(() => {
+    console.log(todoList)
+  }, [todoList])
 
   return (
     <>
-      <section className='todo-app'>
+      <section>
         <TodoTextInput />
         {todoList.isNotEmpty ? (
           <>
-            <TodoList
-              matchedRouteTodoList={todoList.getMatchedRouteTodoList(pathname)}
-              onToggleAll={onToggleAll}
-            />
+            <TodoList matchedRouteTodoList={matchedRouteTodoList} toggleAllTodos={toggleAllTodos} />
             <UnderBar
               backlogLength={todoList.backlogLength}
               completedIsNotEmpty={todoList.completedIsNotEmpty}
-              onClearCompleted={onClearCompleted}
+              clearCompletedTodos={clearCompletedTodos}
             />
           </>
         ) : null}
