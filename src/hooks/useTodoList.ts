@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid'
 import { useEffect, useReducer } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { TodoListModel } from '../models/TodoListModal'
+import { TodoListModel } from '../models/TodoListModel'
 import { LocalStorageKeyType, TodoListAction, TodoType } from '../types'
 import { getLocalStorage, removeLocalStorage, setLocalStorage } from '../utils'
 
