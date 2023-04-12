@@ -93,16 +93,16 @@ export const useTodoList = () => {
   }
 
   const matchedRouteTodoList = getMatchedRouteTodoList(pathname)
-  const addTodo = (text: string) => dispatch({ type: 'ADD', text })
-  const removeTodo = (id: string) => dispatch({ type: 'REMOVE', id })
-  const editTodo = (id: string, text: string) => dispatch({ type: 'EDIT', id, text })
-  const toggleTodo = (id: string) => dispatch({ type: 'TOGGLE', id })
-  const toggleAllTodos = (completed: boolean) => dispatch({ type: 'TOGGLE_ALL', completed })
+  const addTodo = (text: TodoType['text']) => dispatch({ type: 'ADD', text })
+  const removeTodo = (id: TodoType['id']) => dispatch({ type: 'REMOVE', id })
+  const editTodo = (id: TodoType['id'], text: TodoType['text']) =>
+    dispatch({ type: 'EDIT', id, text })
+  const toggleTodo = (id: TodoType['id']) => dispatch({ type: 'TOGGLE', id })
+  const toggleAllTodos = (completed: TodoType['completed']) =>
+    dispatch({ type: 'TOGGLE_ALL', completed })
   const clearCompletedTodos = () => dispatch({ type: 'CLEAR_COMPLETED' })
 
   useEffect(() => {
-    console.log(matchedRouteTodoList)
-
     storeTodoList()
   }, [todoList])
 

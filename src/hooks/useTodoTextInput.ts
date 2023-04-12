@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
-import { useTodoList } from './useTodoList'
-
-export const useTodoTextInput = () => {
-  const { addTodo } = useTodoList()
-
+interface Props {
+  addTodo: (text: string) => void
+}
+export const useTodoTextInput = ({ addTodo }: Props) => {
   const [text, setText] = useState('')
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +11,7 @@ export const useTodoTextInput = () => {
   }
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key == 'Enter' && e.currentTarget.value.trim().length > 0) {
-      addTodo(e.currentTarget.value)
+      addTodo(text)
       setText('')
     }
   }

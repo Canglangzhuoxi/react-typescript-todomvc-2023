@@ -5,11 +5,14 @@ import { TodoType } from '../../types'
 
 interface Props {
   todo: TodoType
+  toggleTodo: (id: TodoType['id']) => void
+  removeTodo: (id: TodoType['id']) => void
+  editTodo: (id: TodoType['id'], text: TodoType['text']) => void
 }
 
-const Todo: React.FC<Props> = ({ todo }) => {
+const Todo: React.FC<Props> = ({ todo, toggleTodo, removeTodo, editTodo }) => {
   const { onCheckBoxChange, onFocusClick, onRemoveClick, onEditBlur, onEditChange, onEditKeyDown } =
-    useTodo(todo.id)
+    useTodo({ id: todo.id, toggleTodo, removeTodo, editTodo })
 
   return (
     <li>

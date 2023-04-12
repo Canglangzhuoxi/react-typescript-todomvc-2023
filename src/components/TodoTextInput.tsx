@@ -1,12 +1,11 @@
-import { useEffect } from 'react'
-
 import { useTodoTextInput } from '../hooks/useTodoTextInput'
 
-const TodoTextInput = () => {
-  const { text, onChange, onKeyDown } = useTodoTextInput()
-  useEffect(() => {
-    console.log(text)
-  }, [text])
+interface Props {
+  addTodo: (text: string) => void
+}
+
+const TodoTextInput = ({ addTodo }: Props) => {
+  const { text, onChange, onKeyDown } = useTodoTextInput({ addTodo })
 
   return (
     <header>

@@ -3,14 +3,20 @@ import { useState } from 'react'
 import { TodoType } from '../types'
 import { useTodoList } from './useTodoList'
 
+interface Props {
+  id: TodoType['id']
+  toggleTodo: (id: TodoType['id']) => void
+  removeTodo: (id: TodoType['id']) => void
+  editTodo: (id: TodoType['id'], text: TodoType['text']) => void
+}
 interface State {
   isEditing: boolean
 }
 
-export const useTodo = (id: TodoType['id']) => {
-  const { removeTodo, editTodo, toggleTodo } = useTodoList()
+export const useTodo = ({ id, toggleTodo, removeTodo, editTodo }: Props) => {
   const init: State = { isEditing: false }
   const [isEditing, setIsEditing] = useState(init)
+  const {} = useTodoList()
 
   const onCheckBoxChange = () => {
     toggleTodo(id)

@@ -5,10 +5,19 @@ import Item from './Todo'
 
 interface TodoListProps {
   matchedRouteTodoList: TodoType[]
-  toggleAllTodos: (completed: boolean) => void
+  toggleAllTodos: (completed: TodoType['completed']) => void
+  toggleTodo: (id: TodoType['id']) => void
+  removeTodo: (id: TodoType['id']) => void
+  editTodo: (id: TodoType['id'], text: TodoType['text']) => void
 }
 
-const TodoList: React.FC<TodoListProps> = ({ matchedRouteTodoList, toggleAllTodos }) => {
+const TodoList: React.FC<TodoListProps> = ({
+  matchedRouteTodoList,
+  toggleTodo,
+  removeTodo,
+  editTodo,
+  toggleAllTodos,
+}) => {
   return (
     <section className='main'>
       <input
@@ -21,7 +30,7 @@ const TodoList: React.FC<TodoListProps> = ({ matchedRouteTodoList, toggleAllTodo
 
       <ul className='todo-list'>
         {matchedRouteTodoList.map((t: TodoType) => {
-          return <Item key={t.id} todo={t} />
+          return <Item key={t.id} todo={t} {...{ toggleTodo, removeTodo, editTodo }} />
         })}
       </ul>
     </section>
